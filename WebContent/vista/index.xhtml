@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+    </h:head>
+    <h:body style="margin:0px;">
+	    <div class="ui-g" style="height:100%">
+		    <div>
+				<h:form> 
+				    <p:menu style="height:100%">
+				        <p:submenu label="Administración">
+				        	<p:menuitem value="Inventario" outcome="index"/>
+				            <p:menuitem value="Ingreso de productos"  outcome="crear" />
+				        </p:submenu>
+		    		</p:menu>
+	    		</h:form>
+			</div>
+		    <div class="ui-g-12 ui-md-10 ui-g-nopad">
+		        <div>
+		            <p:breadCrumb>
+					    <p:menuitem value="Index" outcome="index"/>
+					    <p:menuitem value="Inventario" outcome="index" />
+					</p:breadCrumb>
+		        </div>
+		        <div class="ui-g-12 ui-g-nopad">
+		            <div class="ui-g">
+		                <div class="ui-g-12">
+	               			<p:panel id="basica" style="margin:20px">
+					            <h:outputText
+					                value="Este es el inventario!... aca podras ver todos los productos con los que cuenta actualmente la tienda, puedes añadir
+					                nuevos productos por medio del boton ´Nuevo producto´, tambien podras actualizarlos o eliminarlos." />
+					    	</p:panel>
+		                </div>
+		            </div>
+		            <div class="ui-g">
+		                <div class="ui-g-12">
+		                <p:button value=" + Nuevo producto" style="margin-left:20px" outcome="crear"/>
+			                <p:panel id="basicaa"  style="margin:20px">
+			                	<p:dataTable id="data" var="item" value="#{listarProductos.lista}" rowKey="#{item.id}" emptyMessage="No hay usuarios disponibles">
+									<p:column headerText="Nombre">
+										<h:outputText value="#{item.nombre}"/>
+									</p:column>
+									<p:column headerText="Descripción">
+										<h:outputText value="#{item.descripcion}"/>
+									</p:column>
+									<p:column headerText="Costo">
+										<h:outputText value="#{item.costo}"/>
+									</p:column>
+									<p:column headerText="Stock">
+										<h:outputText value="#{item.stock}"/>
+									</p:column>
+									<p:column headerText="Acciones" style="text-align:center;">
+										<p:button value="X" outcome="eliminar" style="color:red">
+											<f:param name="productoId" value="#{item.id}"/>
+										</p:button>
+										<p:spacer width="10"/>
+										<p:button value="Actualizar" outcome="actualizar">
+											<f:param name="productoId" value="#{item.id}"/>
+										</p:button>
+									</p:column>
+								</p:dataTable>
+							</p:panel>
+		                </div>  
+					</div>
+		        </div>
+		    </div>
+		</div>
+    </h:body>
+</html>
